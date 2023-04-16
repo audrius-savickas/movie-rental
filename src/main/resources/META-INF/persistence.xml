@@ -4,7 +4,12 @@
              xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
              version="3.0">
     <persistence-unit name="MoviesPU">
-
-        <class>com.example.movierental.entities.Movie</class>
+        <jta-data-source>MoviesDataSource</jta-data-source>
+        <class>com.example.movierental.entities.Genre</class>
+        <properties>
+            <!--<property name="hibernate.hbm2ddl.auto" value="create"/>-->
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+        </properties>
     </persistence-unit>
 </persistence>
