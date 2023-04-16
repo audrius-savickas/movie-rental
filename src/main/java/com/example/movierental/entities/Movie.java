@@ -16,6 +16,7 @@ public class Movie {
     private Long id;
 
     @Basic(optional = false)
+    @Column(name = "name")
     private String title;
 
     @Basic
