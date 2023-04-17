@@ -6,6 +6,31 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
-    <h:outputLabel value="Hello, world"/>
+    <div>
+        <h1>Customers</h1>
+        <a href="movies.xhtml">Go to Movies</a>
+        <a href="genres.xhtml">Go to Genres</a>
+    </div>
+    <br />
+
+    <h:form>
+        <h3>Add new customer:</h3>
+        <p>Name: <h:inputText value="#{customersMyBatis.customerToCreate.name}" required="true" /></p>
+        <p>Email: <h:inputText value="#{customersMyBatis.customerToCreate.email}" required="true" /></p>
+        <h:commandButton value="Add" action="#{customersMyBatis.createCustomer}" />
+    </h:form>
+    <br />
+
+    <h3>All customers:</h3>
+    <ui:repeat value="#{customers.allCustomers}" var="customer">
+        <div>
+            <h4>#{customer.name}</h4>
+            <p>Email: #{customer.email}</p>
+            <p>Rented movies:</p>
+            <ui:repeat value="#{customer.movies}" var="movie">
+                <li>#{movie.title}</li>
+            </ui:repeat>
+        </div>
+    </ui:repeat>
 </f:view>
 </html>

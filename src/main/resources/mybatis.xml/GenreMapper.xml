@@ -9,6 +9,12 @@
     -->
     <id column="ID" jdbcType="BIGINT" property="id" />
     <result column="NAME" jdbcType="VARCHAR" property="name" />
+
+    <!-- Manually added for ManyToMany -->
+    <!-- Nested select (N+1 select problem) -->
+    <collection property="movies" javaType="ArrayList"
+                ofType="Movie" column="id"
+                select="selectMoviesForGenre"/>
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     <!--
@@ -56,5 +62,13 @@
     -->
     select ID, NAME
     from PUBLIC.GENRE
+  </select>
+
+  <!-- Manually added for ManyToMany -->
+  <select id="selectMoviesForGenre" resultType="Movie">
+    SELECT m.ID, DESCRIPTION, DIRECTOR, RELEASEDATE, NAME, CUSTOMER_ID
+    FROM public.movie m
+           JOIN public.MOVIE_GENRE mg on mg.MOVIE_ID = m.ID
+    WHERE mg.GENRES_ID = #{id,jdbcType=INTEGER}
   </select>
 </mapper>
