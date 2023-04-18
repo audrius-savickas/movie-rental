@@ -1,5 +1,7 @@
 package com.example.movierental.mybatis.model;
 
+import java.util.List;
+
 public class Customer {
     /**
      *
@@ -98,5 +100,15 @@ public class Customer {
      */
     public void setName(String name) {
         this.name = name;
+    }
+
+    private List<Movie> movies;
+
+    public List<Movie> getMovies() {
+        return movies;
+    }
+
+    public void setMovies(List<Movie> movies) {
+        this.movies = movies;
     }
 }

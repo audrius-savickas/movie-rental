@@ -10,6 +10,11 @@
     <id column="ID" jdbcType="BIGINT" property="id" />
     <result column="EMAIL" jdbcType="VARCHAR" property="email" />
     <result column="NAME" jdbcType="VARCHAR" property="name" />
+
+    <!-- Manually added for OneToMany -->
+    <collection property="movies" javaType="ArrayList"
+                ofType="Movie" column="id"
+                select="selectMoviesForCustomer"/>
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     <!--
@@ -58,5 +63,13 @@
     -->
     select ID, EMAIL, NAME
     from PUBLIC.CUSTOMER
+  </select>
+
+  <!-- Manually added for OneToMany -->
+  <select id="selectMoviesForCustomer" resultType="Movie">
+    SELECT m.ID, DESCRIPTION, DIRECTOR, RELEASEDATE, m.NAME, CUSTOMER_ID
+    FROM public.movie m
+           JOIN public.CUSTOMER c on m.CUSTOMER_ID = c.ID
+    WHERE c.ID = #{id,jdbcType=INTEGER}
   </select>
 </mapper>

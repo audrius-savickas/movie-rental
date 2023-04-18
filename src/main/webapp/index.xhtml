@@ -24,7 +24,9 @@
     <h3>All customers:</h3>
     <ui:repeat value="#{customers.allCustomers}" var="customer">
         <div>
-            <h4>#{customer.name}</h4>
+            <h:link outcome="customerDetails?customerId=#{customer.id}">
+                <h4>#{customer.name}</h4>
+            </h:link>
             <p>Email: #{customer.email}</p>
             <p>Rented movies:</p>
             <ui:repeat value="#{customer.movies}" var="movie">

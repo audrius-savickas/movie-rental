@@ -33,12 +33,7 @@
         <h3>
             <h:link value="#{movie.title}" outcome="movieDetails?movieId=#{movie.id}" />
         </h3>
-        <p>Description: #{movie.description}</p>
-        <p>Director: #{movie.director}</p>
-        <p>Genres:</p>
-        <ui:repeat value="#{movie.genres}" var="genre">
-            <li>#{genre.name}</li>
-        </ui:repeat>
+        <p>Rented by: #{movie.customer.name}</p>
     </ui:repeat>
 </f:view>
 </html>

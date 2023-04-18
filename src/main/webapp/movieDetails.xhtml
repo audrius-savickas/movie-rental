@@ -15,7 +15,7 @@
    <p>Name: #{movieDetails.movie.title}</p>
    <p>Description: #{movieDetails.movie.description}</p>
    <p>Director: #{movieDetails.movie.director}</p>
-   <p>Rented by: #{movieDetails.movie.customer.name}</p>
+   <p>Rented by: <h:link outcome="customerDetails?customerId=#{movieDetails.movie.customer.id}">#{movieDetails.movie.customer.name}</h:link></p>
    <p>Genres:</p>
    <ui:repeat value="#{movieDetails.movie.genres}" var="genre">
       <li>
