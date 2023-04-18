@@ -9,6 +9,8 @@
     <h1>Genres</h1>
     <a href="index.xhtml">Go to Customers</a>
     <a href="movies.xhtml">Go to Movies</a>
+    <br />
+    <br />
     <ui:repeat value="#{genres.allGenres}" var="genre">
         <li>
             <h:link value="#{genre.name}" outcome="genreMovies?genreId=#{genre.id}" />
@@ -17,7 +19,7 @@
     <h:form>
         <h:outputText value="New genre: "/>
         <h:inputText value="#{genres.genreToCreate.name}" required="true" />
-        <h:commandButton value="update" actionListener="#{genres.createGenre}" action="genres.xhtml?faces-redirect=true" />
+        <h:commandButton value="Add" actionListener="#{genres.createGenre}" action="genres.xhtml?faces-redirect=true" />
     </h:form>
 </f:view>
 </html>

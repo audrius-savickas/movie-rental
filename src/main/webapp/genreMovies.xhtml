@@ -6,11 +6,18 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
-    <h1>Genre:</h1>
+    <div>
+        <h1>Genre</h1>
+        <a href="genres.xhtml">> Back to Genres</a>
+    </div>
+    <br />
+
     <p>Name: #{genreMoviesMyBatis.genre.name}</p>
     <p>Movies:</p>
     <ui:repeat value="#{genreMoviesMyBatis.genre.movies}" var="movie">
-        <li>#{movie.name}</li>
+        <li>
+            <h:link value="#{movie.name}" outcome="movieDetails?movieId=#{movie.id}" />
+        </li>
     </ui:repeat>
 </f:view>
 </html>
