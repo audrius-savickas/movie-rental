@@ -51,9 +51,7 @@ public class Movies {
 
     @Transactional
     public String createNewMovie() {
-        System.out.println("allGenres " + allGenres);
         List<Genre> newGenres = allGenres.stream().filter(genre -> genreIds.contains(genre.getId())).collect(Collectors.toList());
-        System.out.println("newGenres " + newGenres);
         movieToCreate.setGenres(newGenres);
 
         moviesDAO.persist(movieToCreate);
