@@ -20,11 +20,12 @@
         <p>Description: <h:inputText value="#{movies.movieToCreate.description}" required="false" /></p>
         <p>Genres:</p>
         <div>
-            <h:selectManyCheckbox value="#{movies.movieToCreate.genres.toArray()}">
-                <f:selectItems value="#{genres.allGenres}" var="genre" itemLabel="#{genre.name}" itemValue="#{genre}" />
+            <h:selectManyCheckbox value="#{movies.genreIds}">
+                <f:selectItems value="#{genres.allGenres}" var="genre" itemLabel="#{genre.name}" itemValue="#{genre.id}" />
             </h:selectManyCheckbox>
         </div>
         <h:commandButton value="Add" action="#{movies.createNewMovie}" />
+        <h:messages/>
     </h:form>
     <br />
 
