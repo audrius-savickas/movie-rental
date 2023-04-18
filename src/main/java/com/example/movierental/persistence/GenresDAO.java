@@ -16,7 +16,7 @@ public class GenresDAO {
         this.em.persist(genre);
     }
 
-    public Genre findOne(Integer id){
+    public Genre findOne(Long id){
         return em.find(Genre.class, id);
     }
 

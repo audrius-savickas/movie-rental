@@ -21,6 +21,6 @@ import java.util.List;
     @Basic(optional = false)
     private String name;
 
-    @ManyToMany
-    private List<Genre> movies = new ArrayList<>();
+    @ManyToMany(mappedBy = "genres")
+    private List<Movie> movies = new ArrayList<>();
 }

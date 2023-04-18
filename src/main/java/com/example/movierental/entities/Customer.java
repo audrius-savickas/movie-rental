@@ -1,5 +1,6 @@
 package com.example.movierental.entities;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,8 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter
-@Setter
+@Getter @Setter
+@EqualsAndHashCode
 @NamedQueries({
         @NamedQuery(name = "Customer.findAll", query = "select c from Customer as c")
 })

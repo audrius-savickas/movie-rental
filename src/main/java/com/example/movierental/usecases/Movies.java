@@ -35,7 +35,6 @@ public class Movies {
 
     @Transactional
     public String createNewMovie() {
-
         moviesDAO.persist(movieToCreate);
         return "/movies?faces-redirect=true";
     }

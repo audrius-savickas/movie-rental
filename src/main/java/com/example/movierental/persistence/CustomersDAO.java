@@ -16,7 +16,7 @@ public class CustomersDAO {
         this.em.persist(customer);
     }
 
-    public Customer findOne(Integer id){
+    public Customer findOne(Long id){
         return em.find(Customer.class, id);
     }
 

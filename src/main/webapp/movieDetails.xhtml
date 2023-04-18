@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+   <h1>Movie</h1>
+   <p>Name: #{movieDetails.movie.title}</p>
+   <p>Description: #{movieDetails.movie.description}</p>
+   <p>Director: #{movieDetails.movie.director}</p>
+   <p>Rented by: #{movieDetails.movie.customer.name}</p>
+   <p>Genres:</p>
+   <ui:repeat value="#{movieDetails.movie.genres}" var="genre">
+      <li>#{genre.name}</li>
+   </ui:repeat>
+   <br />
+
+   <h:form>
+      <h2>Edit</h2>
+
+      <h4 style="display: inline">Customer: </h4>
+      <h:selectOneMenu value="#{movieDetails.movieCustomerId}">
+         <f:selectItems value="#{customers.allCustomers}" var="customer" itemLabel="#{customer.name}" itemValue="#{customer.id}" />
+         <f:selectItem itemValue="#{null}" itemLabel="None" />
+      </h:selectOneMenu>
+      <br />
+
+      <h4 style="display: inline">Genres: </h4>
+      <h:selectManyCheckbox value="#{movieDetails.genreIds}">
+         <f:selectItems value="#{genres.allGenres}" var="genre" itemLabel="#{genre.name}" itemValue="#{genre.id}" />
+      </h:selectManyCheckbox>
+      <br />
+
+      <h:commandButton value="Update" action="#{'movieDetails?faces-redirect=true&amp;movieId='.concat(movieDetails.movie.id)}" actionListener="#{movieDetails.updateMovie}">
+         <f:param name="movieId" value="#{movieDetails.movie.id}" />
+      </h:commandButton>
+      <h:messages />
+   </h:form>
+
+</f:view>
+</html>

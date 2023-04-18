@@ -68,7 +68,7 @@
   <select id="selectMoviesForGenre" resultType="Movie">
     SELECT m.ID, DESCRIPTION, DIRECTOR, RELEASEDATE, NAME, CUSTOMER_ID
     FROM public.movie m
-           JOIN public.MOVIE_GENRE mg on mg.MOVIE_ID = m.ID
+           JOIN public.MOVIE_GENRE mg on mg.MOVIES_ID = m.ID
     WHERE mg.GENRES_ID = #{id,jdbcType=INTEGER}
   </select>
 </mapper>

@@ -20,7 +20,7 @@
         <p>Description: <h:inputText value="#{movies.movieToCreate.description}" required="false" /></p>
         <p>Genres:</p>
         <div>
-            <h:selectManyCheckbox value="#{movies.movieToCreate.genres}">
+            <h:selectManyCheckbox value="#{movies.movieToCreate.genres.toArray()}">
                 <f:selectItems value="#{genres.allGenres}" var="genre" itemLabel="#{genre.name}" itemValue="#{genre}" />
             </h:selectManyCheckbox>
         </div>
@@ -30,7 +30,9 @@
 
     <h3>All movies:</h3>
     <ui:repeat value="#{movies.allMovies}" var="movie">
-        <h3>#{movie.title}</h3>
+        <h3>
+            <h:link value="#{movie.title}" outcome="movieDetails?movieId=#{movie.id}" />
+        </h3>
         <p>Description: #{movie.description}</p>
         <p>Director: #{movie.director}</p>
         <p>Genres:</p>
