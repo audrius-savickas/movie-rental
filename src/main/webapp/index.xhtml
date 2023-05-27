@@ -15,11 +15,15 @@
 
     <h:form>
         <h3>Add new customer:</h3>
-        <p>Name: <h:inputText value="#{customersMyBatis.customerToCreate.name}" required="true" /></p>
+        <p>Name:<h:inputText value="#{customersMyBatis.customerToCreate.name}" required="true" /></p>
         <p>Email: <h:inputText value="#{customersMyBatis.customerToCreate.email}" required="true" /></p>
         <h:commandButton value="Add" action="#{customersMyBatis.createCustomer}" />
     </h:form>
     <br />
+    <h:form>
+        <h:commandButton value="Generate random name" action="#{customersMyBatis.generateCustomerName()}"></h:commandButton>
+        <h:outputText value="#{customersMyBatis.customerNameGenerationStatus}" />
+    </h:form>
 
     <h3>All customers:</h3>
     <ui:repeat value="#{customers.allCustomers}" var="customer">
