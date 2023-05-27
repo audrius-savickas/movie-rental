@@ -35,4 +35,8 @@ public class Movie {
 
     @ManyToMany
     private List<Genre> genres = new ArrayList<>();
+
+    @Version
+    @Column(name = "OPT_LOCK_VERSION")
+    private Integer version;
 }

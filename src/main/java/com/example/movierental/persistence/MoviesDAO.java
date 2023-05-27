@@ -13,6 +13,7 @@ public class MoviesDAO {
     EntityManager em;
 
     public void persist(Movie movie){
+        System.out.println("Persist with version " + movie.getVersion());
         this.em.persist(movie);
     }
 

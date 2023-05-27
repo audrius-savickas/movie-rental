@@ -12,14 +12,20 @@ import lombok.Setter;
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
+import javax.persistence.OptimisticLockException;
 import javax.transaction.Transactional;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-@Model
-public class MovieDetails {
+@ViewScoped
+@Named
+@Getter @Setter
+public class MovieDetails implements Serializable {
     @Inject
     MoviesDAO moviesDAO;
 
@@ -29,20 +35,12 @@ public class MovieDetails {
     @Inject
     GenresDAO genresDAO;
 
-    @Getter
-    @Setter
     Movie movie;
 
-    @Getter
-    @Setter
     Long movieCustomerId;
 
-    @Getter
-    @Setter
     List<Long> genreIds;
 
-    @Getter
-    @Setter
     List<Genre> allGenres;
 
     @PostConstruct
@@ -67,7 +65,11 @@ public class MovieDetails {
         List<Genre> newGenres = allGenres.stream().filter(genre -> genreIds.contains(genre.getId())).collect(Collectors.toList());
         movie.setGenres(newGenres);
 
-        moviesDAO.persist(movie);
-        return "movieDetails?movieId=" + movie.getId();
+        try {
+            moviesDAO.update(movie);
+        } catch (OptimisticLockException e) {
+            return "movieDetails?movieId=" + movie.getId() + "&error=optimistic-lock-exception&faces-redirect=true";
+        }
+        return "movieDetails?movieId=" + movie.getId() + "&faces-redirect=true";
     }
 }

@@ -40,9 +40,10 @@
       </h:selectManyCheckbox>
       <br />
 
-      <h:commandButton value="Update" action="#{'movieDetails?faces-redirect=true&amp;movieId='.concat(movieDetails.movie.id)}" actionListener="#{movieDetails.updateMovie}">
+      <h:commandButton value="Update" action="#{movieDetails.updateMovie()}">
          <f:param name="movieId" value="#{movieDetails.movie.id}" />
       </h:commandButton>
+      <h:outputText value="Movie was modified by another user. If you want to override it - submit your changes again" rendered="#{param['error'] == 'optimistic-lock-exception'}" />
       <h:messages />
    </h:form>
 
