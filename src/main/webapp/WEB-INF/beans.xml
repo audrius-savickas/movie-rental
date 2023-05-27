@@ -6,4 +6,8 @@
     <interceptors>
         <class>com.example.movierental.interceptors.MethodLogger</class>
     </interceptors>
+
+    <alternatives>
+        <class>com.example.movierental.services.GirlCustomerNameGenerator</class>
+    </alternatives>
 </beans>
