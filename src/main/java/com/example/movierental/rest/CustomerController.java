@@ -1,6 +1,7 @@
 package com.example.movierental.rest;
 
 import com.example.movierental.entities.Customer;
+import com.example.movierental.interceptors.LoggedInvocation;
 import com.example.movierental.persistence.CustomersDAO;
 import com.example.movierental.rest.dto.CreateCustomerDTO;
 import com.example.movierental.rest.dto.GetCustomerDTO;
@@ -19,6 +20,7 @@ import java.util.stream.Collectors;
 
 @ApplicationScoped
 @Path("/customers")
+@LoggedInvocation
 public class CustomerController {
     @Inject
     private CustomersDAO customersDAO;
