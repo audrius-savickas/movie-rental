@@ -34,6 +34,9 @@
         <h3>
             <h:link value="#{movie.title}" outcome="movieDetails?movieId=#{movie.id}" />
         </h3>
+        <h:form>
+            <h:commandButton value="Download movie" action="#{movieDownloadService.downloadMovie(movie.id)}"></h:commandButton>
+        </h:form>
         <p>Rented by: #{movie.customer.name}</p>
     </ui:repeat>
 </f:view>

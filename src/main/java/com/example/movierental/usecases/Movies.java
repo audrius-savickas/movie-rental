@@ -4,6 +4,7 @@ import com.example.movierental.entities.Genre;
 import com.example.movierental.entities.Movie;
 import com.example.movierental.persistence.GenresDAO;
 import com.example.movierental.persistence.MoviesDAO;
+import com.example.movierental.services.MovieDownloadService;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,6 +23,9 @@ public class Movies {
 
     @Inject
     GenresDAO genresDAO;
+
+    @Inject
+    MovieDownloadService movieDownloadService;
 
     @Getter
     private List<Movie> allMovies;
