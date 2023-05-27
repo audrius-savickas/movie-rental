@@ -3,6 +3,7 @@ package com.example.movierental.usecases;
 import com.example.movierental.mybatis.dao.CustomerMapper;
 import com.example.movierental.mybatis.model.Customer;
 import com.example.movierental.services.CustomerNameGenerator;
+import com.example.movierental.services.CustomerService;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,9 +21,6 @@ import java.util.concurrent.ExecutionException;
 @Named
 public class CustomersMyBatis implements Serializable {
     @Inject
-    private CustomerMapper customerMapper;
-
-    @Inject
     private CustomerNameGenerator customerNameGenerator;
 
     @Getter @Setter
@@ -30,10 +28,12 @@ public class CustomersMyBatis implements Serializable {
 
     private CompletableFuture<String> customerNameGenerationTask = null;
 
+    @Inject
+    CustomerService customerService;
+
     @Transactional
     public String createCustomer() {
-        customerMapper.insert(customerToCreate);
-        return "/index?faces-redirect=true";
+        return customerService.createCustomer(customerToCreate);
     }
 
     public String generateCustomerName() {

@@ -10,4 +10,8 @@
     <alternatives>
         <class>com.example.movierental.services.GirlCustomerNameGenerator</class>
     </alternatives>
+
+    <decorators>
+        <class>com.example.movierental.services.CustomerServiceDecorator</class>
+    </decorators>
 </beans>
